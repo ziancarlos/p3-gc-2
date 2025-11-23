@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package payment;
+
+option go_package = "p3-graded-challenge-2-ziancarlos/proto/payment";
+
+// Payment service definition
+service PaymentService {
+  // Create a new payment
+  rpc CreatePayment(CreatePaymentRequest) returns (PaymentResponse);
+  
+  // Get all payments
+  rpc GetAllPayments(GetAllPaymentsRequest) returns (GetAllPaymentsResponse);
+  
+  // Get payment by ID
+  rpc GetPaymentByID(GetPaymentByIDRequest) returns (PaymentResponse);
+  
+  // Delete payment by ID
+  rpc DeletePayment(DeletePaymentRequest) returns (DeletePaymentResponse);
+}
+
+// Request and Response messages
+message CreatePaymentRequest {
+  double amount = 1;
+}
+
+message GetAllPaymentsRequest {}
+
+message GetAllPaymentsResponse {
+  repeated PaymentResponse payments = 1;
+}
+
+message GetPaymentByIDRequest {
+  string id = 1;
+}
+
+message DeletePaymentRequest {
+  string id = 1;
+}
+
+message DeletePaymentResponse {
+  string message = 1;
+}
+
+message PaymentResponse {
+  string id = 1;
+  double amount = 2;
+}
+
